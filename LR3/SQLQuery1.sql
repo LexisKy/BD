@@ -1,6 +1,6 @@
 CREATE DATABASE Cinema
 
-/* Создание таблиц */
+/* РЎРѕР·РґР°РЅРёРµ С‚Р°Р±Р»РёС† */
 
 CREATE TABLE actor(
   id_actor INT NOT NULL PRIMARY KEY IDENTITY,
@@ -45,90 +45,90 @@ CREATE TABLE movies(
   actor_price REAL NOT NULL
 )
 
-/* Таблица для использования TRUNCATE TABLE UPDATE*/
+/* РўР°Р±Р»РёС†Р° РґР»СЏ TRUNCATE*/
 CREATE TABLE table_for_truncate(
   id_table INT NOT NULL PRIMARY KEY IDENTITY,
   name VARCHAR(50) NOT NULL,
   surname VARCHAR(50) NOT NULL
 )
 
-INSERT INTO table_for_truncate      	--1.1 Без указания списка полей INSERT INTO table_name VALUES (value1, value2, value3, ...);                               
+INSERT INTO table_for_truncate      	--1.1 Р‘РµР· СѓРєР°Р·Р°РЅРёСЏ СЃРїРёСЃРєР° РїРѕР»РµР№ INSERT INTO table_name VALUES (value1, value2, value3, ...);                               
 VALUES
-  ('Имя1', 'Фамилия1'),
-  ('Имя2', 'Фамилия2')
+  ('РРјСЏ1', 'Р¤Р°РјРёР»РёСЏ1'),
+  ('РРјСЏ2', 'Р¤Р°РјРёР»РёСЏ2')
 
-/* Заполнение таблиц информацией */
+/* Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ ГІГ ГЎГ«ГЁГ¶ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГҐГ© */
 INSERT INTO gender
 VALUES
-  ('муж'),
-  ('жен')
+  ('РјСѓР¶'),
+  ('Р¶РµРЅ')
 
-INSERT INTO actor (name, surname, date_of_birth, id_gender) --1.2 С указанием списка полей INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+INSERT INTO actor (name, surname, date_of_birth, id_gender) --1.2 РЎ СѓРєР°Р·Р°РЅРёРµРј СЃРїРёСЃРєР° РїРѕР»РµР№ INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
 VALUES
-  ('Алексей', 'Зайнуллин', '1997-10-27T10:34:09', 1),
-  ('Ольга', 'Степанова', '1998-11-22T11:34:09', 2),
-  ('Игорь', 'Запеканов', '1996-05-21T05:34:09', 1),
-  ('Клавдия', 'Макарова', '1995-07-23T03:34:09', 2),
-  ('Михаил', 'Ороспаев', '1993-08-25T05:34:09', 1),
-  ('Апполинария', 'Ирмушкина', '1997-03-24T01:34:09', 2)
+  ('РђР»РµРєСЃРµР№', 'Р—Р°Р№РЅСѓР»Р»РёРЅ', '1997-10-27T10:34:09', 1),
+  ('РћР»СЊРіР°', 'РЎС‚РµРїР°РЅРѕРІР°', '1998-11-22T11:34:09', 2),
+  ('РРіРѕСЂСЊ', 'Р—Р°РїРµРєР°РЅРѕРІ', '1996-05-21T05:34:09', 1),
+  ('РљР»Р°РІРґРёСЏ', 'РњР°РєР°СЂРѕРІР°', '1995-07-23T03:34:09', 2),
+  ('РњРёС…Р°РёР»', 'РћСЂРѕСЃРїР°РµРІ', '1993-08-25T05:34:09', 1),
+  ('РђРїРїРѕР»РёРЅР°СЂРёСЏ', 'РСЂРјСѓС€РєРёРЅР°', '1997-03-24T01:34:09', 2)
 
-DELETE  --2.1. Всех записей
+DELETE  --2.1. Р’СЃРµС… Р·Р°РїРёСЃРµР№
   FROM
     actor
 
-DELETE --	2.2 По условию DELETE FROM table_name WHERE condition;
+DELETE --	2.2 РџРѕ СѓСЃР»РѕРІРёСЋ DELETE FROM table_name WHERE condition;
   FROM
     actor WHERE
 	  id_gender = 2
 
-TRUNCATE TABLE table_for_truncate --	2.3. Очистить таблицу TRUNCATE
+TRUNCATE TABLE table_for_truncate --	2.3. РћС‡РёСЃС‚РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ TRUNCATE
 
-UPDATE table_for_truncate -- 3.1. Всех записей
-  SET name = 'Заменено'
+UPDATE table_for_truncate -- 3.1. Р’СЃРµС… Р·Р°РїРёСЃРµР№
+  SET name = 'Р—Р°РјРµРЅРµРЅРѕ'
 
-UPDATE table_for_truncate  --3.2. По условию обновляя один атрибут UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
-  SET name = 'Заменено с условием'
+UPDATE table_for_truncate  --3.2. РџРѕ СѓСЃР»РѕРІРёСЋ РѕР±РЅРѕРІР»СЏСЏ РѕРґРёРЅ Р°С‚СЂРёР±СѓС‚ UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+  SET name = 'Р—Р°РјРµРЅРµРЅРѕ СЃ СѓСЃР»РѕРІРёРµРј'
   WHERE
-    surname = 'Фамилия1'
+    surname = 'Р¤Р°РјРёР»РёСЏ1'
 
-UPDATE table_for_truncate --3.	3.По условию обновляя несколько атрибутов UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
-  SET name = 'Заменен первый атрибут', surname = 'Заменен второй атрибут'
+UPDATE table_for_truncate --3.	3.РџРѕ СѓСЃР»РѕРІРёСЋ РѕР±РЅРѕРІР»СЏСЏ РЅРµСЃРєРѕР»СЊРєРѕ Р°С‚СЂРёР±СѓС‚РѕРІ UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+  SET name = 'Р—Р°РјРµРЅРµРЅ РїРµСЂРІС‹Р№ Р°С‚СЂРёР±СѓС‚', surname = 'Р—Р°РјРµРЅРµРЅ РІС‚РѕСЂРѕР№ Р°С‚СЂРёР±СѓС‚'
   WHERE
-    surname = 'Фамилия1'
+    surname = 'Р¤Р°РјРёР»РёСЏ1'
 
-SELECT name FROM table_for_truncate --4.1. С определенным набором извлекаемых атрибутов (SELECT atr1, atr2 FROM...)
+SELECT name FROM table_for_truncate --4.1. РЎ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј РЅР°Р±РѕСЂРѕРј РёР·РІР»РµРєР°РµРјС‹С… Р°С‚СЂРёР±СѓС‚РѕРІ (SELECT atr1, atr2 FROM...)
 
-SELECT * FROM table_for_truncate --4.2. Со всеми атрибутами (SELECT * FROM...)
+SELECT * FROM table_for_truncate --4.2. РЎРѕ РІСЃРµРјРё Р°С‚СЂРёР±СѓС‚Р°РјРё (SELECT * FROM...)
 
-SELECT name FROM table_for_truncate WHERE surname = 'Фамилия2' --4.3. С условием по атрибуту (SELECT * FROM ... WHERE atr1 = "")
+SELECT name FROM table_for_truncate WHERE surname = 'Р¤Р°РјРёР»РёСЏ2' --4.3.РЎ СѓСЃР»РѕРІРёРµРј РїРѕ Р°С‚СЂРёР±СѓС‚Сѓ (SELECT * FROM ... WHERE atr1 = "")
 
-INSERT INTO producer (name, surname, date_of_birth, id_gender)  --	3. С чтением значения из другой таблицы INSERT INTO table2 (column_name(s)) SELECT column_name(s) FROM table1;
+INSERT INTO producer (name, surname, date_of_birth, id_gender)  --	3.3 РџРѕ СѓСЃР»РѕРІРёСЋ РѕР±РЅРѕРІР»СЏСЏ РЅРµСЃРєРѕР»СЊРєРѕ Р°С‚СЂРёР±СѓС‚РѕРІ INSERT INTO table2 (column_name(s)) SELECT column_name(s) FROM table1;
 SELECT
   name, surname, date_of_birth, id_gender
 FROM
   actor
 WHERE
-  surname = 'Зайнуллин'
+  surname = 'Р—Р°Р№РЅСѓР»Р»РёРЅ'
 
 INSERT INTO producer 
 VALUES
-  ('Михаил', 'Галустян', '2005-10-15T05:05:05', 1),
-  ('Ирина', 'Степанова', '1998-10-15T05:05:05', 2),
-  ('Евгений', 'Галин', '2005-10-15T05:05:05', 1)
+  ('РњРёС…Р°РёР»', 'Р“Р°Р»СѓСЃС‚СЏРЅ', '2005-10-15T05:05:05', 1),
+  ('РСЂРёРЅР°', 'РЎС‚РµРїР°РЅРѕРІР°', '1998-10-15T05:05:05', 2),
+  ('Р•РІРіРµРЅРёР№', 'Р“Р°Р»РёРЅ', '2005-10-15T05:05:05', 1)
 
 INSERT INTO role 
 VALUES
-  ('Танкист', 'Сидит в танке'),
-  ('Бухгалтер', 'Ведёт документацию'),
-  ('Бармен', 'Делает напитки'),
-  ('Лётчик', 'Летает')
+  ('РўР°РЅРєРёСЃС‚', 'РЎРёРґРёС‚ РІ С‚Р°РЅРєРµ'),
+  ('Р‘СѓС…РіР°Р»С‚РµСЂ', 'Р’РµРґС‘С‚ РґРѕРєСѓРјРµРЅС‚Р°С†РёСЋ'),
+  ('Р‘Р°СЂРјРµРЅ', 'Р”РµР»Р°РµС‚ РЅР°РїРёС‚РєРё'),
+  ('Р›С‘С‚С‡РёРє', 'Р›РµС‚Р°РµС‚')
 
 INSERT INTO movie_card
 VALUES
-  ('Три танкиста', 'Танкисты ездят на танках', '02:01:15.1', 3),
-  ('Интересный', 'Про интересное', '02:25:15.0', 1),
-  ('Про офис', 'Бухгалтер работает с бумагами', '03:01:15.0', 2),
-  ('Летающий самолёт', 'Лётчик летает на самолёте', '01:30:15.0', 3)
+  ('РўСЂРё С‚Р°РЅРєРёСЃС‚Р°', 'РўР°РЅРєРёСЃС‚С‹ РµР·РґСЏС‚ РЅР° С‚Р°РЅРєР°С…', '02:01:15.1', 3),
+  ('РРЅС‚РµСЂРµСЃРЅС‹Р№', 'РџСЂРѕ РёРЅС‚РµСЂРµСЃРЅРѕРµ', '02:25:15.0', 1),
+  ('РџСЂРѕ РѕС„РёСЃ', 'Р‘СѓС…РіР°Р»С‚РµСЂ СЂР°Р±РѕС‚Р°РµС‚ СЃ Р±СѓРјР°РіР°РјРё', '03:01:15.0', 2),
+  ('Р›РµС‚Р°СЋС‰РёР№ СЃР°РјРѕР»С‘С‚', 'Р›С‘С‚С‡РёРє Р»РµС‚Р°РµС‚ РЅР° СЃР°РјРѕР»С‘С‚Рµ', '01:30:15.0', 3)
 
 ALTER TABLE movies
   ADD CONSTRAINT
@@ -184,15 +184,15 @@ VALUES
   (3, 3, 4, '14000'),
   (3, 4, 2, '15000')
 
-SELECT TOP(4) * --5.1. С сортировкой по возрастанию ASC + ограничение вывода количества записей
+SELECT TOP(4) * --5.1. РЎ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ ASC + РѕРіСЂР°РЅРёС‡РµРЅРёРµ РІС‹РІРѕРґР° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
 FROM actor
 ORDER BY id_gender ASC
 
-SELECT * --5.2 С сортировкой по убыванию DESC
+SELECT * --5.2 РЎ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ РїРѕ СѓР±С‹РІР°РЅРёСЋ DESC
 FROM actor
 ORDER BY id_gender DESC
 
-SELECT TOP(6) * --5.3. С сортировкой по двум атрибутам + ограничение вывода количества записей
+SELECT TOP(6) * --5.3. РЎ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ РїРѕ РґРІСѓРј Р°С‚СЂРёР±СѓС‚Р°Рј + РѕРіСЂР°РЅРёС‡РµРЅРёРµ РІС‹РІРѕРґР° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
 FROM actor
 ORDER BY id_gender, id_actor ASC
 
@@ -200,15 +200,15 @@ SELECT TOP(6) *
 FROM actor
 ORDER BY id_gender, id_actor DESC
 
-SELECT TOP(6) * --5.4. С сортировкой по первому атрибуту, из списка извлекаемых
+SELECT TOP(6) * --5.4. РЎ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ РїРѕ РїРµСЂРІРѕРјСѓ Р°С‚СЂРёР±СѓС‚Сѓ, РёР· СЃРїРёСЃРєР° РёР·РІР»РµРєР°РµРјС‹С…
 FROM actor
 ORDER BY 1 ASC
 
-SELECT *--6.1 WHERE по дате
+SELECT *                       --6.1 WHERE РїРѕ РґР°С‚Рµ
 FROM actor
 WHERE date_of_birth = '1997-10-27T10:34:09'
 
-SELECT YEAR (date_of_birth) --6.2. Извлечь из таблицы не всю дату, а только год. Например, год рождения автора.
+SELECT YEAR (date_of_birth) --6.2. РР·РІР»РµС‡СЊ РёР· С‚Р°Р±Р»РёС†С‹ РЅРµ РІСЃСЋ РґР°С‚Сѓ, Р° С‚РѕР»СЊРєРѕ РіРѕРґ. РќР°РїСЂРёРјРµСЂ, РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ Р°РІС‚РѕСЂР°. Р”Р»СЏ СЌС‚РѕРіРѕ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С„СѓРЅРєС†РёСЏ.
 FROM actor
 WHERE date_of_birth = '1997-10-27T10:34:09'
 
@@ -232,45 +232,45 @@ SELECT SUM(id_gender) --7.4 SUM
 FROM actor
 GROUP BY id_gender
 
-SELECT name, MIN(Year(date_of_birth)) AS year --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
+SELECT name, MIN(Year(date_of_birth)) AS year --8.1 1. РќР°РїРёСЃР°С‚СЊ 3 СЂР°Р·РЅС‹С… Р·Р°РїСЂРѕСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј GROUP BY + HAVING
 FROM producer
 GROUP BY name
 HAVING MIN(Year(date_of_birth)) > 1995
 
-SELECT title, MAX(timing) As timing --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
+SELECT title, MAX(timing) As timing --8.1 1. РќР°РїРёСЃР°С‚СЊ 3 СЂР°Р·РЅС‹С… Р·Р°РїСЂРѕСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј GROUP BY + HAVING
 FROM movie_card
 GROUP BY title
 HAVING MAX(timing) > '02:00:00'
 
-SELECT name, MAX(id_gender) As gender --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
+SELECT name, MAX(id_gender) As gender --8.1 1. РќР°РїРёСЃР°С‚СЊ 3 СЂР°Р·РЅС‹С… Р·Р°РїСЂРѕСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј GROUP BY + HAVING
 FROM actor
 GROUP BY name
 HAVING MAX(id_gender) > 1
 
-SELECT * --9.1. LEFT JOIN двух таблиц и WHERE по одному из атрибутов
+SELECT * --9.1. LEFT JOIN РґРІСѓС… С‚Р°Р±Р»РёС† Рё WHERE РїРѕ РѕРґРЅРѕРјСѓ РёР· Р°С‚СЂРёР±СѓС‚РѕРІ
 FROM actor
 LEFT JOIN gender ON actor.id_gender = gender.id_gender
 
-SELECT TOP(4) * --9.2. RIGHT JOIN. Получить такую же выборку, как и в 5.1
+SELECT TOP(4) * --9.2. RIGHT JOIN. РџРѕР»СѓС‡РёС‚СЊ С‚Р°РєСѓСЋ Р¶Рµ РІС‹Р±РѕСЂРєСѓ, РєР°Рє Рё РІ 5.1
 FROM actor
 RIGHT JOIN gender ON actor.id_gender = gender.id_gender
 ORDER BY id_actor ASC
 
-SELECT actor_price, title, role.description, timing, actor.name, actor.surname --9.3. LEFT JOIN трех таблиц + WHERE по атрибуту из каждой таблицы
+SELECT actor_price, title, role.description, timing, actor.name, actor.surname --9.3. LEFT JOIN С‚СЂРµС… С‚Р°Р±Р»РёС† + WHERE РїРѕ Р°С‚СЂРёР±СѓС‚Сѓ РёР· РєР°Р¶РґРѕР№ С‚Р°Р±Р»РёС†С‹
 FROM movies
 LEFT JOIN movie_card ON movies.id_movie_card = movie_card.id_movie_card
 LEFT JOIN actor ON actor.id_actor = movies.id_actor
 LEFT JOIN role ON role.id_role = movies.id_role
 WHERE movies.actor_price > '15000' AND movie_card.timing > '02:00:00' AND YEAR(actor.date_of_birth) > 1997 
 
-SELECT* --9.4. FULL OUTER JOIN двух таблиц
+SELECT* --9.4. FULL OUTER JOIN РґРІСѓС… С‚Р°Р±Р»РёС†
 FROM producer
 FULL OUTER JOIN gender ON gender.id_gender = producer.id_gender
 
-SELECT * --10.1. Написать запрос с WHERE IN (подзапрос)
+SELECT * --10.1. РќР°РїРёСЃР°С‚СЊ Р·Р°РїСЂРѕСЃ СЃ WHERE IN (РїРѕРґР·Р°РїСЂРѕСЃ)
 FROM producer
 WHERE producer.id_producer IN (SELECT movie_card.id_producer FROM movie_card)
 
-SELECT name, surname, YEAR(date_of_birth) AS age, sex --10.2. Написать запрос SELECT atr1, atr2, (подзапрос) FROM ...  
+SELECT name, surname, YEAR(date_of_birth) AS age, sex --10.2. РќР°РїРёСЃР°С‚СЊ Р·Р°РїСЂРѕСЃ SELECT atr1, atr2, (РїРѕРґР·Р°РїСЂРѕСЃ) FROM ...  
 FROM actor
 LEFT JOIN gender ON gender.id_gender = actor.id_gender
