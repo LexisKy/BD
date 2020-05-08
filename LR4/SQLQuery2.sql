@@ -85,12 +85,11 @@ WHERE id_hotel = 1 AND id_room_category = 3 AND checkin_date = '2019-05-10')
  Записи в таблице room_in_booking с id_room_in_booking = 5 и 2154 являются примером неправильного состояния,
  которые необходимо найти. Результирующий кортеж выборки должен содержать информацию о двух конфликтующих номерах.  */
 
-SELECT*
-FROM room_in_booking AS first_room, room_in_booking AS second_room
-WHERE
-   first_room.id_room = second_room.id_room AND first_room.id_room_in_booking <> second_room.id_room_in_booking AND
-   first_room.checkin_date >= second_room.checkin_date AND first_room.checkout_date < second_room.checkout_date 
-ORDER BY first_room.id_room_in_booking ASC
+SELECT *
+FROM room_in_booking AS room1, room_in_booking AS room2
+WHERE (room1.id_room = room2.id_room AND room1.id_room_in_booking <> room2.id_room_in_booking) AND 
+  ((room1.checkin_date <= room2.checkin_date AND room1.checkout_date >= room2.checkout_date) OR
+   (room1.checkin_date >= room2.checkin_date AND room1.checkout_date > room2.checkout_date AND room2.checkout_date > room1.checkin_date))
 
 --8. Создать бронирование в транзакции. 
 
