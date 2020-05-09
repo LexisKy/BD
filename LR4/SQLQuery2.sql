@@ -96,11 +96,10 @@ WHERE (room1.id_room = room2.id_room AND room1.id_room_in_booking <> room2.id_ro
 BEGIN TRANSACTION
   INSERT INTO booking
   VALUES ('999', GETDATE())
+  INSERT INTO room_in_booking
+  VALUES ((SELECT booking.id_booking FROM booking WHERE id_booking = '999'),
+           '55', '2020-03-02', '2020-03-07')
 COMMIT
-
-Select*
-FROM booking
-ORDER BY id_client DESC
 
 --9. Добавить необходимые индексы для всех таблиц. 
 
