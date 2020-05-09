@@ -232,15 +232,16 @@ SELECT SUM(id_gender) --7.4 SUM
 FROM actor
 GROUP BY id_gender
 
-SELECT name, MIN(Year(date_of_birth)) AS year --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
-FROM producer
+SELECT name, COUNT(movies.id_movie_card) AS movie_count --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
+FROM movies
+LEFT JOIN actor ON actor.id_actor = movies.id_actor
 GROUP BY name
-HAVING MIN(Year(date_of_birth)) > 1995
+HAVING COUNT(movies.id_movie_card) >= 2
 
 SELECT title, MAX(timing) As timing --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
 FROM movie_card
 GROUP BY title
-HAVING MAX(timing) > '02:00:00'
+HAVING MAX(timing) >= '02:25:00'
 
 SELECT name, MAX(id_gender) As gender --8.1 1. Написать 3 разных запроса с использованием GROUP BY + HAVING
 FROM actor
